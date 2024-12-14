@@ -90,7 +90,7 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
         plt.figure(figsize=(10, 6))
         sns.histplot(df[first_numeric_column], kde=True, color='blue', bins=30)
         plt.title(f'Distribution of {first_numeric_column}')
-        dist_plot_file = os.path.join(output_dir, f'distribution_.png')
+        dist_plot_file = os.path.join(output_dir, 'distribution_.png')
         plt.savefig(dist_plot_file)
         plt.close()  # Close the figure to avoid displaying it
     else:
@@ -102,7 +102,8 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
 
 # Function to create the README.md with a narrative and visualizations
 def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_dir):
-    print("Creating README file...")  # Debug ```python
+    print("Creating README file...")  # Debugging line
+    # ```python
     # Write the analysis report to a markdown file
     readme_file = os.path.join(output_dir, 'README.md')
     try:
@@ -187,9 +188,9 @@ def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_d
 
 
 # Function to generate a detailed story using the new OpenAI API through the proxy
- 
+ ```python
 def question_llm(prompt, context):
-    print(" Generating story using LLM...")  # Debugging line
+    print("Generating story using LLM...")  # Debugging line
     try:
         # Get the AIPROXY_TOKEN from the environment variable
         token = os.environ["AIPROXY_TOKEN"]
@@ -308,4 +309,4 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: uv run autolysis.py <dataset_path>")
         sys.exit(1)
-    main(sys.argv[1]) 
+    main(sys.argv[1])
