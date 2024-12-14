@@ -18,7 +18,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-import argparse
 import requests
 import json
 import openai  # Make sure you install this library: pip install openai
@@ -67,8 +66,7 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
     plt.title('Correlation Matrix')
     heatmap_file = os.path.join(output_dir, 'correlation_matrix.png')
     plt.savefig(heatmap_file)
-    plt.show()  # Display the heatmap inline
-    plt.close()
+    plt.close()  # Close the figure to avoid displaying it
 
     # Check if there are outliers to plot
     if not outliers.empty and outliers.sum() > 0:
@@ -80,8 +78,7 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
         plt.ylabel('Number of Outliers')
         outliers_file = os.path.join(output_dir, 'outliers.png')
         plt.savefig(outliers_file)
-        plt.show()  # Display the outliers plot inline
-        plt.close()
+        plt.close()  # Close the figure to avoid displaying it
     else:
         print("No outliers detected to visualize.")
         outliers_file = None  # No file created for outliers
@@ -95,8 +92,7 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
         plt.title(f'Distribution of {first_numeric_column}')
         dist_plot_file = os.path.join(output_dir, f'distribution_.png')
         plt.savefig(dist_plot_file)
-        plt.show()  # Display the distribution plot inline
-        plt.close()
+        plt.close()  # Close the figure to avoid displaying it
     else:
         dist_plot_file = None  # No numeric columns to plot
 
@@ -106,10 +102,8 @@ def visualize_data(corr_matrix, outliers, df, output_dir):
 
 # Function to create the README.md with a narrative and visualizations
 def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_dir):
-    print("Creating README file...")  # Debugging line
-    
+    print("Creating README file...")  # Debug ```python
     # Write the analysis report to a markdown file
-    
     readme_file = os.path.join(output_dir, 'README.md')
     try:
         with open(readme_file, 'w') as f:
@@ -193,6 +187,7 @@ def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_d
 
 
 # Function to generate a detailed story using the new OpenAI API through the proxy
+ 
 def question_llm(prompt, context):
     print(" Generating story using LLM...")  # Debugging line
     try:
@@ -312,5 +307,5 @@ if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
         print("Usage: uv run autolysis.py <dataset_path>")
-        sys.exit (1) 
-    main(sys.argv[1])
+        sys.exit(1)
+    main(sys.argv[1]) 
