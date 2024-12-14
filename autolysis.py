@@ -188,8 +188,8 @@ def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_d
 
 # Function to generate a detailed story using the new OpenAI API through the proxy
 
-def question_llm(summary_stats, missing_values, corr_matrix, outliers):
-    print("Generating story using LLM...")  # Debugging line
+def question_llm(prompt, context):
+    print(" Generating story using LLM...")  # Debugging line
     try:
         # Get the AIPROXY_TOKEN from the environment variable
         token = os.environ["AIPROXY_TOKEN"]
@@ -197,21 +197,15 @@ def question_llm(summary_stats, missing_values, corr_matrix, outliers):
         # Set the custom API base URL for the proxy
         api_url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 
-        # Construct the full prompt dynamically based on the analysis results
+        # Construct the full prompt
         full_prompt = f"""
         Based on the following data analysis, please generate a creative and engaging story. The story should include multiple paragraphs, a clear structure with an introduction, body, and conclusion, and should feel like a well-rounded narrative.
 
-        Summary Statistics:
-        {summary_stats.to_string()}
+        Context:
+        {context}
 
-        Missing Values:
-        {missing_values.to_string()}
-
-        Correlation Matrix:
-        {corr_matrix.to_string()}
-
-        Outliers:
-        {outliers.to_string()}
+        Data Analysis Prompt:
+        {prompt}
 
         The story should be elaborate and cover the following:
         - An introduction to set the context.
@@ -254,6 +248,7 @@ def question_llm(summary_stats, missing_values, corr_matrix, outliers):
     except Exception as e:
         print(f"Error: {e}")
         return "Failed to generate story."
+
 
 # Main function that integrates all the steps
 def main(csv_file):
