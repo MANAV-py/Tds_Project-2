@@ -188,7 +188,7 @@ def create_readme(summary_stats, missing_values, corr_matrix, outliers, output_d
 
 
 # Function to generate a detailed story using the new OpenAI API through the proxy
- ```python
+ 
 def question_llm(prompt, context):
     print("Generating story using LLM...")  # Debugging line
     try:
