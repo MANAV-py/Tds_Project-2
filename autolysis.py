@@ -1,3 +1,4 @@
+
 # /// script
 # requires-python = ">=3.9"
 # dependencies = [
@@ -9,6 +10,7 @@
 #   "openai",
 #   "scikit-learn",
 #   "requests",
+#   "ipykernel",  # Added ipykernel
 # ]
 # ///
 
